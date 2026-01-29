@@ -8,7 +8,7 @@
 #SBATCH --account=lp86
 
 
-REPO_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+REPO_ROOT="%%INSTALL_PATH%%"
 # Set the scripts directory relative to the repo root
 export SCRIPT_DIR="$REPO_ROOT/scripts"
 export VENV_PATH="${VENV_PATH:-$REPO_ROOT/venv_mattersim_phonopy-qha}"
