@@ -26,7 +26,7 @@ echo "--- Submission Started for $STRUC_ID at: $(date) ---" > "$LOG_FILE"
 
 # 1. Start Volume Calculations
 echo "Submitting Volume Calculations..." | tee -a "$LOG_FILE"
-bash ${SCRIPT_DIR}/run_all.sh "$SCRIPT_DIR" "$BARRIER_NAME" "$NUM_VOLUMES" >> "$LOG_FILE" 2>&1
+bash ${SCRIPT_DIR}/run_all_bfgs_and_fc.sh "$SCRIPT_DIR" "$BARRIER_NAME" "$NUM_VOLUMES" >> "$LOG_FILE" 2>&1
 
 # 2. Schedule Collection (Barrier)
 echo "Scheduling Collection (Singleton: bfgs_fc)..." | tee -a "$LOG_FILE"
@@ -37,7 +37,7 @@ echo "Stage 2 ID: $COLLECT_ID" >> "$LOG_FILE"
 
 # 3. Schedule Phonopy Post-processing: the number of jobs in the array is read from NUM_VOLUMES variable
 echo "Scheduling Phonopy..." | tee -a "$LOG_FILE"
-RAW_PHONO=$(sbatch --parsable --job-name="phono_${STRUC_ID}" --dependency=afterok:$COLLECT_ID --array=1-$NUM_VOLUMES ${SCRIPT_DIR}/run_all_phonopy.sh)
+RAW_PHONO=$(sbatch --parsable --job-name="phono_${STRUC_ID}" --dependency=afterok:$COLLECT_ID --array=1-$NUM_VOLUMES ${SCRIPT_DIR}/run_all_thermal_properties.sh)
 PHONO_ID=$(echo "$RAW_PHONO" | cut -d';' -f1)
 echo "Stage 3 ID: $PHONO_ID" >> "$LOG_FILE"
 
