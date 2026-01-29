@@ -23,7 +23,8 @@ git clone https://github.com/croncagl/MatterSim-Phonopy-QHA.git
 cd MatterSim-Phonopy-QHA
 
 # 2. Run the automated setup within the uenv
-uenv start --view=default prgenv-gnu/25.6:v2 -- bash ./install.sh
+uenv start --view=default prgenv-gnu/25.6:v2
+bash ./install.sh
 ```
 
 
