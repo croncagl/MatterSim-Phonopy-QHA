@@ -34,7 +34,6 @@ bash ./install.sh
 * **Navigate into your `$SCRATCH` directory** and create a dedicated run folder for your simulation.
 * **Copy your structure file** (e.g., `.xyz`, `.cif`, or extended `xyz`) and the `master.sh` script into this run directory.
    > **Note:** Ensure the lattice vectors are explicitly specified in your structure file.
-* **Copy the `master.sh` script** from your cloned repository in to the dedicated run folder. 
 
 ### 2. Configure `master.sh`
 The script uses relative pathing to automatically find the supporting scripts and the virtual environment within your cloned repository folder.
