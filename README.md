@@ -12,24 +12,32 @@ uenv image ls | grep critic2/1.2:1952527021
 uenv image pull critic2/1.2:1952527021
 ```
 
-### 2. Environment setup ###
+### 2. Get the Code & Setup Environment ###
 
+Clone the repository to a persistent location like your $PROJECT or $STORE directory.
 Following the [CSCS Python Guide](https://docs.cscs.ch/build-install/python/#installing-venv-on-top-of-a-uenv-view "Go to CSCS Documentation"):
 
 ```bash
+# 0. Move to persistent storage
+cd $STORE  # or cd $PROJECT
+# 1. Start the uenv
 uenv start --view=default prgenv-gnu/25.6:v2
 unset PYTHONPATH
 export PYTHONUSERBASE="$(dirname "$(dirname "$(which python)")")"
 
-# Create Virtual Environment
-uv venv --python 3.12 --system-site-packages --seed --relocatable --link-mode=copy path/to/my-venv-phonopy-mattersim
-source path/to/my-venv-phonopy-mattersim/bin/activate
+# 2. Clone the repository
+git clone https://github.com/croncagl/MatterSim-Phonopy-QHA.git
+cd MatterSim-Phonopy-QHA
 
-# Install Dependencies
+# 3. Create Virtual Environment named 'venv_mattersim_phonopy-qha' inside the repo
+uv venv --python 3.12 --system-site-packages --seed --relocatable --link-mode=copy venv_mattersim_phonopy-qha
+source venv_mattersim_phonopy-qha/bin/activate
+
+# 4. Install Dependencies
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 pip install mace-torch mattersim phonopy
 
-# Deactivate venv and uenv 
+# 5. Deactivate venv and uenv 
 deactivate
 exit
 ```
@@ -38,16 +46,13 @@ exit
 ## 🚀 How to Use
 
 ### 1. Prepare your Workspace
-1. **Clone the repository** into your `$STORE` or `$PROJECT` directory.
-2. **Navigate to `$SCRATCH`** and create a dedicated run directory for your simulation.
-3. **Copy your structure file** (e.g., `.xyz`, `.cif`, or extended `xyz`) and the `master.sh` script into this run directory.
+1. **Navigate into your `$SCRATCH` directory** and create a dedicated run folder for your simulation.
+2. **Copy your structure file** (e.g., `.xyz`, `.cif`, or extended `xyz`) and the `master.sh` script into this run directory.
    > **Note:** Ensure the lattice vectors are explicitly specified in your structure file.
 
 ### 2. Configure `master.sh`
-Open `master.sh` in a text editor and update the following variables to match your environment:
-
-* `SCRIPT_DIR`: The full path to the directory where you cloned this repository.
-* `VENV_PATH`: The path to the virtual environment created during the **Installation** step.
+The script uses relative pathing to automatically find the supporting scripts and the virtual environment within your cloned repository folder.
+You only need to open `master.sh` in a text editor if you wish to adjust the following:
 * `NUM_VOLUMES`: The number of volume points for the QHA calculation (Default is `21`, which creates volumes equally spaced from `0.9` to `1.1` of the original volume).
 
 ### 3. Execution
