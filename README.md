@@ -5,7 +5,7 @@ This repository contains a suite of scripts designed to automate thermodynamic p
 ## 🛠 Installation
 
 ### 1. Preliminary Check (CSCS Alps)
-Ensure you have the `critic2` image:
+Ensure you have the `critic2` image available in your environment:
 ```bash
 uenv image ls | grep critic2/1.2:1952527021
 # If missing, pull it:
@@ -14,41 +14,26 @@ uenv image pull critic2/1.2:1952527021
 
 ### 2. Get the Code & Setup Environment ###
 
-Clone the repository to a persistent location like your $PROJECT or $STORE directory.
-Following the [CSCS Python Guide](https://docs.cscs.ch/build-install/python/#installing-venv-on-top-of-a-uenv-view "Go to CSCS Documentation"):
+Clone the repository to a persistent location like your $PROJECT or $STORE directory and run the installation script.
 
 ```bash
-# 0. Move to persistent storage
-cd $STORE  # or cd $PROJECT
-# 1. Start the uenv
-uenv start --view=default prgenv-gnu/25.6:v2
-unset PYTHONPATH
-export PYTHONUSERBASE="$(dirname "$(dirname "$(which python)")")"
-
-# 2. Clone the repository
+# 1. Move to persistent storage and clone
+cd $PROJECT  # or cd $STORE
 git clone https://github.com/croncagl/MatterSim-Phonopy-QHA.git
 cd MatterSim-Phonopy-QHA
 
-# 3. Create Virtual Environment named 'venv_mattersim_phonopy-qha' inside the repo
-uv venv --python 3.12 --system-site-packages --seed --relocatable --link-mode=copy venv_mattersim_phonopy-qha
-source venv_mattersim_phonopy-qha/bin/activate
-
-# 4. Install Dependencies
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
-pip install mace-torch mattersim phonopy
-
-# 5. Deactivate venv and uenv 
-deactivate
-exit
+# 2. Run the automated setup within the uenv
+uenv start --view=default prgenv-gnu/25.6:v2 -- bash ./install.sh
 ```
 
 
 ## 🚀 How to Use
 
 ### 1. Prepare your Workspace
-1. **Navigate into your `$SCRATCH` directory** and create a dedicated run folder for your simulation.
-2. **Copy your structure file** (e.g., `.xyz`, `.cif`, or extended `xyz`) and the `master.sh` script into this run directory.
+* **Navigate into your `$SCRATCH` directory** and create a dedicated run folder for your simulation.
+* **Copy your structure file** (e.g., `.xyz`, `.cif`, or extended `xyz`) and the `master.sh` script into this run directory.
    > **Note:** Ensure the lattice vectors are explicitly specified in your structure file.
+* **Copy the `master.sh` script** from your cloned repository in to the dedicated run folder. 
 
 ### 2. Configure `master.sh`
 The script uses relative pathing to automatically find the supporting scripts and the virtual environment within your cloned repository folder.
