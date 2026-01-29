@@ -11,7 +11,7 @@
 REPO_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Set the scripts directory relative to the repo root
 export SCRIPT_DIR="$REPO_ROOT/scripts"
-export VENV_PATH="${VENV_PATH:-$REPO_ROOT/venv}"
+export VENV_PATH="${VENV_PATH:-$REPO_ROOT/venv_mattersim_phonopy-qha}"
 
 LOG_FILE="master_submission.log"
 
