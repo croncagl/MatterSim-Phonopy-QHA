@@ -42,7 +42,7 @@ You only need to open `master.sh` in a text editor if you wish to adjust the fol
 * `NUM_VOLUMES`: The number of volume points for the QHA calculation (Default is `21`, which creates volumes equally spaced from `0.9` to `1.1` of the original volume).
 
 ### 3. Execution
-Once you have configured the paths in `master.sh`, submit the job to the Slurm scheduler:
+Submit the job to the Slurm scheduler:
 
 ```bash
 sbatch master.sh
