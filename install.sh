@@ -11,8 +11,8 @@ export PYTHONUSERBASE="$(dirname "$(dirname "$(which python)")")"
 
 # 2. Create Virtual Environment
 echo "Creating virtual environment..."
-uv venv --python 3.12 --system-site-packages --seed --relocatable --link-mode=copy venv
-source venv/bin/activate
+uv venv --python 3.12 --system-site-packages --seed --relocatable --link-mode=copy venv_mattersim_phonopy-qha
+source venv_mattersim_phonopy-qha/bin/activate
 
 # 3. Install Dependencies
 echo "pip: Installing packages..."
