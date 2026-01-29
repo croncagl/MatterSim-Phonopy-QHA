@@ -17,6 +17,6 @@ uv venv --python 3.12 --system-site-packages --seed --relocatable --link-mode=co
 # 3. Install Dependencies
 echo "pip: Installing packages..."
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
-pip install mace-torch mattersim phonopy
+pip install mattersim phonopy
 
 echo "Installation complete!
