@@ -9,7 +9,7 @@
 
 
 ############# CHANGE HERE WHERE TO STORE THE SCRIPTS ####################
-SCRIPT_DIR="/capstor/scratch/cscs/your_cscs_username/path_to_scripts"
+SCRIPT_DIR="$SCRATCH/path_to_scripts"
 #########################################################################
 
 ############# CHANGE VENV PATH HERE #####################################
