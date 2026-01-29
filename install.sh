@@ -19,4 +19,4 @@ echo "pip: Installing packages..."
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 pip install mattersim phonopy h5py
 
-echo "Installation complete!
+echo "Installation complete!"
