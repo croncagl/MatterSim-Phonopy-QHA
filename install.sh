@@ -19,4 +19,7 @@ echo "pip: Installing packages..."
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 pip install mattersim phonopy h5py
 
+CURRENT_DIR=$(pwd)
+sed -i "s|%%INSTALL_PATH%%|${CURRENT_DIR}|g" master.sh
+
 echo "Installation complete!"
