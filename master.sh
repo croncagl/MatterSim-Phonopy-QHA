@@ -8,13 +8,10 @@
 #SBATCH --account=lp86
 
 
-############# CHANGE HERE WHERE TO STORE THE SCRIPTS ####################
-SCRIPT_DIR="$SCRATCH/path_to_scripts"
-#########################################################################
-
-############# CHANGE VENV PATH HERE #####################################
-export VENV_PATH="path/to/my-venv-phonopy-mattersim"
-#########################################################################
+REPO_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Set the scripts directory relative to the repo root
+export SCRIPT_DIR="$REPO_ROOT/scripts"
+export VENV_PATH="${VENV_PATH:-$REPO_ROOT/venv}"
 
 LOG_FILE="master_submission.log"
 
